@@ -7,8 +7,7 @@ var position = view.center;
 function onFrame(event) {
 	position += (mousePos - position) / 10;
 	var vector = (view.center - position) / 10;
-	moveStars(vector * 3);
-	moveRainbow(vector, event);
+	moveStars(vector * 1);
 }
 
 function onMouseMove(event) {
@@ -17,14 +16,16 @@ function onMouseMove(event) {
 
 var moveStars = new function() {
 	// The amount of symbol we want to place;
-	var count = 50;
+	var count = 150;
+	
 
 	// Create a symbol, which we will use to place instances of later:
 	var path = new Path.Circle({
 		center: [0, 0],
-		radius: 5,
-		fillColor: 'black',
-		strokeColor: 'white'
+		radius: 15,
+		fillColor: 'pink',
+		strokeColor: '#ADD8E6'
+
 	});
 
 	var symbol = new Symbol(path);
@@ -65,8 +66,9 @@ var moveStars = new function() {
 			position.y = viewBounds.height
 		}
 	}
-
+//random star things
 	return function(vector) {
+		path.fillColor.hue += 1;
 		// Run through the active layer's children list and change
 		// the position of the placed symbols:
 		var layer = project.activeLayer;
@@ -79,49 +81,3 @@ var moveStars = new function() {
 		}
 	};
 };
-
-var moveRainbow = new function() {
-	var paths = [];
-	var colors = ['red', 'orange', 'yellow', 'lime', 'blue', 'purple'];
-	for (var i = 0; i < colors.length; i++) {
-		var path = new Path({
-			fillColor: colors[i]
-		});
-		paths.push(path);
-	}
-
-	var count = 30;
-	var group = new Group(paths);
-	var headGroup;
-	var eyePosition = new Point();
-	var eyeFollow = (Point.random() - 0.5);
-	var blinkTime = 200;
-
-
-	return function(vector, event) {
-		var vector = (view.center - position) / 10;
-
-		if (vector.length < 5)
-			vector.length = 5;
-		count += vector.length / 100;
-		group.translate(vector);
-		var rotated = vector.rotate(90);
-		var middle = paths.length / 2;
-		for (var j = 0; j < paths.length; j++) {
-			var path = paths[j];
-			var nyanSwing = playing ? Math.sin(event.count / 2) * vector.length : 1;
-			var unitLength = vector.length * (2 + Math.sin(event.count / 10)) / 2;
-			var length = (j - middle) * unitLength + nyanSwing;
-			var top = view.center + rotated.normalize(length);
-			var bottom = view.center + rotated.normalize(length + unitLength);
-			path.add(top);
-			path.insert(0, bottom);
-			if (path.segments.length > 200) {
-				var index = Math.round(path.segments.length / 2);
-				path.segments[index].remove();
-				path.segments[index - 1].remove();
-			}
-			path.smooth();
-		}
-	}
-}
