@@ -15,11 +15,6 @@ function onMouseMove(event) {
 	mousePos = event.point;
 }
 
-function onKeyDown(event) {
-	if (event.key == 'space')
-		project.activeLayer.selected = !project.activeLayer.selected;
-}
-
 var moveStars = new function() {
 	// The amount of symbol we want to place;
 	var count = 50;
@@ -28,8 +23,8 @@ var moveStars = new function() {
 	var path = new Path.Circle({
 		center: [0, 0],
 		radius: 5,
-		fillColor: 'white',
-		strokeColor: 'black'
+		fillColor: 'black',
+		strokeColor: 'white'
 	});
 
 	var symbol = new Symbol(path);
@@ -47,11 +42,6 @@ var moveStars = new function() {
 			})
 		};
 	}
-
-	var vector = new Point({
-		angle: 45,
-		length: 0
-	});
 
 	function keepInView(item) {
 		var position = item.position;
