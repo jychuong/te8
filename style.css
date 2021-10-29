@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300&display=swap');
+
+body {
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  margin: 0;
+  max-width: 600px;
+}
+
+a {
+  color: #0050C1;
+}
+
+a:hover, a:visited:hover {
+  color: #00B0C1;
+}
+a:visited {
+  color: #85C1E9;
+}
+h1 {
+    margin: 5%;
+    color: #85C1E9;
+}
+
+h2{
+  color: #FFBBBB;
+    margin-left: 5%;
+}
+
+p{
+  margin-left: 5%;
+}
+
+canvas {
+  margin: auto;
+  width: 1000px;
+  height: 1000px;
+}
