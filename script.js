@@ -14,16 +14,22 @@ function onMouseMove(event) {
 	mousePos = event.point;
 }
 
+function onKeyDown(event) {
+	if (event.key == 'space')
+		project.activeLayer.selected = !project.activeLayer.selected;
+}
+
 var moveStars = new function() {
 	// The amount of symbol we want to place;
 	var count = 150;
-	
 
-	// Create a symbol, which we will use to place instances of later:
-	var path = new Path.Circle({
-		center: [0, 0],
-		radius: 15,
+	// make triangles
+	var path = new Path.RegularPolygon({
+		point: [3],
+		sides: [3],
+		radius:[20],
 		fillColor: 'pink',
+		strokeWidth: 8,
 		strokeColor: '#ADD8E6'
 
 	});
@@ -66,8 +72,9 @@ var moveStars = new function() {
 			position.y = viewBounds.height
 		}
 	}
-//random star things
+
 	return function(vector) {
+		path.rotate(2);
 		path.fillColor.hue += 1;
 		// Run through the active layer's children list and change
 		// the position of the placed symbols:
