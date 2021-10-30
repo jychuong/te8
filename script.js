@@ -31,7 +31,7 @@ var moveStars = new function() {
 		fillColor: 'pink',
 		strokeWidth: 8,
 		strokeColor: '#ADD8E6',
-		shadowColor: "blue",
+		shadowColor: 'blue',
 		shadowBlur: 50,
 
 	});
