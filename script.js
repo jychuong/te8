@@ -30,7 +30,9 @@ var moveStars = new function() {
 		radius:[20],
 		fillColor: 'pink',
 		strokeWidth: 8,
-		strokeColor: '#ADD8E6'
+		strokeColor: '#ADD8E6',
+		shadowColor: "blue",
+		shadowBlur: 50,
 
 	});
 
