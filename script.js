@@ -33,7 +33,6 @@ var moveStars = new function() {
 		strokeColor: '#ADD8E6',
 		shadowColor: 'blue',
 		shadowBlur: 50
-
 	});
 
 	var symbol = new Symbol(path);
